@@ -19,7 +19,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <oddjob.app>${project.basedir}/../run-oddjob/target/app</oddjob.app>
+        <oddjob.app>${project.basedir}/../run-oddjob/target/oddjob</oddjob.app>
 
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
