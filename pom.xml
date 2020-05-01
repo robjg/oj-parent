@@ -30,7 +30,7 @@
 
         <antlr.version>4.7.1</antlr.version>
 
-        <hsql.version>2.3.3</hsql.version>
+        <hsql.version>2.5.0</hsql.version>
         <jackson.version>2.9.6</jackson.version>
 
         <junit.version>4.12</junit.version>
