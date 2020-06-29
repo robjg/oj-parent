@@ -39,6 +39,7 @@
         <hamcrest.version>2.2</hamcrest.version>
         <mockito.version>1.10.19</mockito.version>
         <xmlunit.version>2.5.0</xmlunit.version>
+        <jsonassert.version>1.5.0</jsonassert.version>
 
     </properties>
 
@@ -182,7 +183,7 @@
             <dependency>
                 <groupId>org.skyscreamer</groupId>
                 <artifactId>jsonassert</artifactId>
-                <version>1.5.0</version>
+                <version>${jsonassert.version}</version>
             </dependency>
 
         </dependencies>
