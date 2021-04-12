@@ -78,6 +78,12 @@
             </dependency>
 
             <dependency>
+                <groupId>uk.co.rgordon</groupId>
+                <artifactId>oj-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
@@ -159,6 +165,14 @@
                 <groupId>org.xmlunit</groupId>
                 <artifactId>xmlunit-matchers</artifactId>
                 <version>${xmlunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>uk.co.rgordon</groupId>
+                <artifactId>arooa</artifactId>
+                <version>${project.version}</version>
+                <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
 
