@@ -28,7 +28,7 @@
 
         <!-- Can't migrate past the version due to getClass() no longer being a property -->
         <beanutils.version>1.9.3</beanutils.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
 
         <antlr.version>4.7.1</antlr.version>
 
