@@ -19,27 +19,28 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <slf4j.version>1.7.25</slf4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.11</logback.version>
 
         <javax.inject.version>1</javax.inject.version>
         <javax.json.version>1.1.4</javax.json.version>
 
         <!-- Can't migrate past the version due to getClass() no longer being a property -->
         <beanutils.version>1.9.3</beanutils.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.11.0</commons-io.version>
 
         <antlr.version>4.7.1</antlr.version>
 
-        <hsql.version>2.5.0</hsql.version>
+        <!-- Last version on Java 8 -->
+        <hsql.version>2.5.2</hsql.version>
         <jackson.version>2.9.6</jackson.version>
 
         <junit.version>4.13.2</junit.version>
-        <junit5.version>5.7.0</junit5.version>
+        <junit5.version>5.8.2</junit5.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <mockito.version>3.6.0</mockito.version>
-        <xmlunit.version>2.8.2</xmlunit.version>
+        <mockito.version>4.6.1</mockito.version>
+        <xmlunit.version>2.9.0</xmlunit.version>
         <jsonassert.version>1.5.0</jsonassert.version>
 
     </properties>
