@@ -27,7 +27,7 @@
         <javax.json.version>1.1.4</javax.json.version>
 
         <!-- Can't migrate past this version due to getClass() no longer being a property -->
-        <beanutils.version>1.9.3</beanutils.version>
+        <beanutils.version>1.9.4</beanutils.version>
         <commons-io.version>2.11.0</commons-io.version>
 
         <antlr.version>4.7.1</antlr.version>
