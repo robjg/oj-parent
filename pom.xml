@@ -34,7 +34,7 @@
 
         <!-- Last version on Java 8 -->
         <hsql.version>2.5.2</hsql.version>
-        <jackson.version>2.12.6.1</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
 
         <junit.version>4.13.2</junit.version>
         <junit5.version>5.8.2</junit5.version>
