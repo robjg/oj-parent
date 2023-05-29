@@ -252,9 +252,6 @@
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
-                                <configuration> <!-- add this to disable checking -->
-                                    <additionalOptions>-Xdoclint:none</additionalOptions>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -305,10 +302,42 @@
                     <version>3.3.0</version>
                 </plugin>
 
+                <!-- Running against a local version of the javadoc plugin with the
+                taglet path fixed. -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.4.1</version>
+                    <version>3.5.1-SNAPSHOT</version>
+                    <configuration>
+                        <quiet/>
+                        <additionalOptions>--ignore-source-errors,-Xdoclint:none</additionalOptions>
+                        <taglets>
+                            <taglet>
+                                <tagletClass>org.oddjob.doc.taglet.PropertyTaglet</tagletClass>
+                            </taglet>
+                            <taglet>
+                                <tagletClass>org.oddjob.doc.taglet.DescriptionTaglet</tagletClass>
+                            </taglet>
+                            <taglet>
+                                <tagletClass>org.oddjob.doc.taglet.ExampleTaglet</tagletClass>
+                            </taglet>
+                            <taglet>
+                                <tagletClass>org.oddjob.doc.taglet.RequiredTaglet</tagletClass>
+                            </taglet>
+                            <taglet>
+                                <tagletClass>org.oddjob.doc.taglet.XmlResourceTaglet</tagletClass>
+                            </taglet>
+                            <taglet>
+                                <tagletClass>org.oddjob.doc.taglet.PlainTextResourceTaglet</tagletClass>
+                            </taglet>
+                        </taglets>
+                        <tagletArtifact>
+                            <groupId>uk.co.rgordon</groupId>
+                            <artifactId>oj-doc</artifactId>
+                            <version>${project.version}</version>
+                        </tagletArtifact>
+                        <tagletpath>${project.basedir}/src/test/resources</tagletpath>
+                    </configuration>
                 </plugin>
 
                 <plugin>
