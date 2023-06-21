@@ -1,0 +1,83 @@
+<!-- ===========================================================================
+
+	Build file for OJ Parent
+	========================
+
+============================================================================ -->
+
+<project basedir="." name="OJ Parent">
+
+
+	<!-- =================================================================== -->
+	<!-- Initialization target                                               -->
+	<!-- =================================================================== -->
+	<target name="init">
+
+		<tstamp/>
+
+
+		<!-- =================================================================== -->
+		<!-- Properties                                                          -->
+		<!-- =================================================================== -->
+
+		<property file="../oj-assembly/version.properties"/>
+		
+		<property name="Name"     value="OJ Parent"/>
+		<property name="name"     value="oj-parent]"/>
+		<property name="build.version"  value="${project.version}"/>
+
+		<echo message="--------------------------------------------------------------"/>
+		<echo message="            ${Name} ${build.version}                                "/>
+		<echo message="--------------------------------------------------------------"/>
+		<echo message="Building with ${ant.version}"/>
+		<echo message="using build file ${ant.file}"/>
+		<echo message="--------------------------------------------------------------"/>
+
+	</target>
+
+
+	<!-- =================================================================== -->
+	<!-- Prepares the source distribution                                    -->
+	<!-- =================================================================== -->
+	<target name="dist-src" depends="init"
+			description="Prepares the source distribution"
+			if="dist.src.dir">
+		
+		<property name="to.dir" value="${dist.src.dir}/${name}"/>
+			
+		<copy todir="${to.dir}">
+			<fileset dir=".">
+				<include name="build.xml"/>
+                <include name="LICENSE.txt"/>
+				<include name="NOTICE.txt"/>
+				<include name="README.md"/>
+				<include name="pom.xml"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Prepares the binary distribution                                    -->
+	<!-- =================================================================== -->
+	<target name="dist-bin" depends="init"
+			description="Prepares the binary distribution"
+			if="dist.bin.dir">
+		
+		<!-- run-oddjob retrieves Arooa as one if its dependencies and copies it
+		     to the distribution dir. -->
+			
+		<echo message="Nothing to do."/>
+
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Clean targets                                                       -->
+	<!-- =================================================================== -->
+	<target name="clean" depends="init" description="Cleans the build directories">
+
+	</target>
+
+</project>
+
+<!-- End of file -->
