@@ -23,7 +23,7 @@
 		<property file="../oj-assembly/version.properties"/>
 		
 		<property name="Name"     value="OJ Parent"/>
-		<property name="name"     value="oj-parent]"/>
+		<property name="name"     value="oj-parent"/>
 		<property name="build.version"  value="${project.version}"/>
 
 		<echo message="--------------------------------------------------------------"/>
@@ -48,6 +48,7 @@
 		<copy todir="${to.dir}">
 			<fileset dir=".">
 				<include name="build.xml"/>
+				<include name="oj-assemble.xml"/>
                 <include name="LICENSE.txt"/>
 				<include name="NOTICE.txt"/>
 				<include name="README.md"/>
