@@ -42,7 +42,7 @@
         <slf4j.version>2.0.6</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         <!--  1.4 x requires java 11 -->
-        <logback.version>1.3.5</logback.version>
+        <logback.version>1.4.14</logback.version>
 
         <javax.inject.version>1</javax.inject.version>
         <nashorn.version>15.3</nashorn.version>
@@ -245,12 +245,50 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.6.4-SNAPSHOT</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
+                                <configuration>
+                                    <quiet/>
+                                    <additionalOptions>--ignore-source-errors,-Xdoclint:none</additionalOptions>
+                                    <taglets>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.PropertyTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.DescriptionTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.ExampleTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.RequiredTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.XmlResourceTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.PlainTextResourceTaglet</tagletClass>
+                                        </taglet>
+                                    </taglets>
+                                    <tagletArtifacts>
+                                        <tagletArtifact>
+                                            <groupId>uk.co.rgordon</groupId>
+                                            <artifactId>oj-doc</artifactId>
+                                            <version>${project.version}</version>
+                                        </tagletArtifact>
+                                        <tagletArtifact>
+                                            <groupId>uk.co.rgordon</groupId>
+                                            <artifactId>arooa</artifactId>
+                                            <version>${project.version}</version>
+                                        </tagletArtifact>
+                                    </tagletArtifacts>
+                                    <tagletpath>${project.basedir}/src/test/resources</tagletpath>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -307,36 +345,52 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>3.6.4-SNAPSHOT</version>
-                    <configuration>
-                        <quiet/>
-                        <additionalOptions>--ignore-source-errors,-Xdoclint:none</additionalOptions>
-                        <taglets>
-                            <taglet>
-                                <tagletClass>org.oddjob.doc.taglet.PropertyTaglet</tagletClass>
-                            </taglet>
-                            <taglet>
-                                <tagletClass>org.oddjob.doc.taglet.DescriptionTaglet</tagletClass>
-                            </taglet>
-                            <taglet>
-                                <tagletClass>org.oddjob.doc.taglet.ExampleTaglet</tagletClass>
-                            </taglet>
-                            <taglet>
-                                <tagletClass>org.oddjob.doc.taglet.RequiredTaglet</tagletClass>
-                            </taglet>
-                            <taglet>
-                                <tagletClass>org.oddjob.doc.taglet.XmlResourceTaglet</tagletClass>
-                            </taglet>
-                            <taglet>
-                                <tagletClass>org.oddjob.doc.taglet.PlainTextResourceTaglet</tagletClass>
-                            </taglet>
-                        </taglets>
-                        <tagletArtifact>
-                            <groupId>uk.co.rgordon</groupId>
-                            <artifactId>oj-doc</artifactId>
-                            <version>${project.version}</version>
-                        </tagletArtifact>
-                        <tagletpath>${project.basedir}/src/test/resources</tagletpath>
-                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>reference</id>
+                            <goals>
+                                <goal>javadoc</goal>
+                            </goals>
+                            <phase>none</phase>
+                            <configuration>
+                                <doclet>org.oddjob.doc.doclet.ReferenceDoclet</doclet>
+                                <docletArtifacts>
+                                    <docletArtifact>
+                                        <groupId>uk.co.rgordon</groupId>
+                                        <artifactId>oj-doc</artifactId>
+                                        <version>${project.version}</version>
+                                    </docletArtifact>
+                                    <docletArtifact>
+                                        <groupId>uk.co.rgordon</groupId>
+                                        <artifactId>oddjob</artifactId>
+                                        <version>${project.version}</version>
+                                    </docletArtifact>
+                                    <docletArtifact>
+                                        <groupId>${project.groupId}</groupId>
+                                        <artifactId>${project.artifactId}</artifactId>
+                                        <version>${project.version}</version>
+                                    </docletArtifact>
+                                </docletArtifacts>
+                                <show>private</show>
+                                <additionalJOptions>
+                                    <additionalJOption>-J-Dlogback.configurationFile=logback-oj-doc.xml</additionalJOption>
+                                </additionalJOptions>
+                                <additionalOptions>
+                                    <additionalOption>-d</additionalOption>
+                                    <additionalOption>${project.basedir}/docs/reference</additionalOption>
+                                    <additionalOption>-loaderpath</additionalOption>
+                                    <additionalOption>${project.basedir}/src/test/resources</additionalOption>
+                                    <additionalOption>-descriptorurl</additionalOption>
+                                    <additionalOption>file:${project.basedir}/src/main/resources/META-INF/arooa.xml</additionalOption>
+                                    <additionalOption>-writerfactory</additionalOption>
+                                    <additionalOption>org.oddjob.doc.markdown.MdReferenceWriterFactory</additionalOption>
+                                    <additionalOption>-apiurl</additionalOption>
+                                    <additionalOption>http://rgordon.co.uk/oddjob/1.6.0/api</additionalOption>
+                                </additionalOptions>
+                                <useStandardDocletOptions>false</useStandardDocletOptions>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
 
                 <plugin>
