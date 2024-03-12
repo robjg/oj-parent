@@ -379,7 +379,7 @@
                                     <additionalOption>-d</additionalOption>
                                     <additionalOption>${project.basedir}/docs/reference</additionalOption>
                                     <additionalOption>-loaderpath</additionalOption>
-                                    <additionalOption>${project.basedir}/src/test/resources</additionalOption>
+                                    <additionalOption>${project.basedir}/src/test/resources;${project.basedir}/src/test/java</additionalOption>
                                     <additionalOption>-descriptorurl</additionalOption>
                                     <additionalOption>file:${project.basedir}/src/main/resources/META-INF/arooa.xml</additionalOption>
                                     <additionalOption>-writerfactory</additionalOption>
@@ -449,7 +449,13 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
         </plugins>
     </build>
+
 
 </project>
