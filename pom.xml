@@ -384,8 +384,10 @@
                                     <additionalOption>file:${project.basedir}/src/main/resources/META-INF/arooa.xml</additionalOption>
                                     <additionalOption>-writerfactory</additionalOption>
                                     <additionalOption>org.oddjob.doc.markdown.MdReferenceWriterFactory</additionalOption>
-                                    <additionalOption>-apiurl</additionalOption>
+                                    <additionalOption>-link</additionalOption>
                                     <additionalOption>http://rgordon.co.uk/oddjob/1.6.0/api</additionalOption>
+                                    <additionalOption>-link</additionalOption>
+                                    <additionalOption>https://docs.oracle.com/en/java/javase/11/docs/api</additionalOption>
                                 </additionalOptions>
                                 <useStandardDocletOptions>false</useStandardDocletOptions>
                             </configuration>
