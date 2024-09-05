@@ -244,7 +244,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.6.4-SNAPSHOT</version>
+                        <version>3.10.0</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -352,12 +352,12 @@
                     <version>3.3.0</version>
                 </plugin>
 
-                <!-- Running against a local version of the javadoc plugin with the
-                taglet path fixed. -->
+                <!-- Can't run against lower versions as there is a bug in tagletpath
+                [MJAVADOC-775](https://issues.apache.org/jira/browse/MJAVADOC-775) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.6.4-SNAPSHOT</version>
+                    <version>3.10.0</version>
                     <executions>
                         <execution>
                             <id>reference</id>
