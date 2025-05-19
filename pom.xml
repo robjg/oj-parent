@@ -40,7 +40,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <slf4j.version>2.0.17</slf4j.version>
-        <log4j.version>1.2.17</log4j.version>
+        <log4j2.version>2.24.3</log4j2.version>
         <logback.version>1.5.18</logback.version>
 
         <javax.inject.version>1</javax.inject.version>
@@ -122,9 +122,9 @@
             </dependency>
 
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j2.version}</version>
             </dependency>
 
             <dependency>
