@@ -59,7 +59,7 @@
         <junit5.version>5.9.2</junit5.version>
         <hamcrest.version>2.2</hamcrest.version>
         <mockito.version>5.5.0</mockito.version>
-        <xmlunit.version>2.9.1</xmlunit.version>
+        <xmlunit.version>2.10.2</xmlunit.version>
         <jsonassert.version>1.5.1</jsonassert.version>
 
     </properties>
