@@ -54,6 +54,7 @@
 
         <hsql.version>2.7.4</hsql.version>
         <jackson.version>2.19.0</jackson.version>
+        <ant.version>1.10.15</ant.version>
 
         <junit.version>4.13.2</junit.version>
         <junit5.version>5.13.0</junit5.version>
