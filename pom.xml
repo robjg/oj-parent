@@ -465,6 +465,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <logback.configurationFile>logback-maven.xml</logback.configurationFile>
+                        <log4j2.configurationFile>log4j2-maven.xml</log4j2.configurationFile>
                         <build.directory>${project.build.directory}</build.directory>
                     </systemPropertyVariables>
                 </configuration>
@@ -481,6 +482,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <logback.configurationFile>logback-maven.xml</logback.configurationFile>
+                        <log4j2.configurationFile>log4j2-maven.xml</log4j2.configurationFile>
                         <build.directory>${project.build.directory}</build.directory>
                     </systemPropertyVariables>
                 </configuration>
