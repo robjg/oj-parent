@@ -41,26 +41,26 @@
 
         <slf4j.version>2.0.17</slf4j.version>
         <log4j2.version>2.24.3</log4j2.version>
-        <logback.version>1.5.20</logback.version>
+        <logback.version>1.5.21</logback.version>
 
         <javax.inject.version>1</javax.inject.version>
         <nashorn.version>15.7</nashorn.version>
         <jakarta.json.version>2.1.3</jakarta.json.version>
         <parsson.version>1.1.7</parsson.version>
         <beanutils.version>1.11.0</beanutils.version>
-        <commons-io.version>2.20.0</commons-io.version>
+        <commons-io.version>2.21.0</commons-io.version>
 
         <antlr.version>4.13.2</antlr.version>
 
         <hsql.version>2.7.4</hsql.version>
-        <jackson.version>2.20.0</jackson.version>
+        <jackson.version>2.20.1</jackson.version>
         <ant.version>1.10.15</ant.version>
 
         <junit.version>4.13.2</junit.version>
-        <junit5.version>5.13.0</junit5.version>
+        <junit5.version>6.0.1</junit5.version>
         <hamcrest.version>3.0</hamcrest.version>
         <mockito.version>5.20.0</mockito.version>
-        <xmlunit.version>2.10.4</xmlunit.version>
+        <xmlunit.version>2.11.0</xmlunit.version>
         <jsonassert.version>1.5.3</jsonassert.version>
 
     </properties>
@@ -229,81 +229,6 @@
 
         </dependencies>
     </dependencyManagement>
-
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                                <configuration>
-                                    <quiet/>
-                                    <additionalOptions>--ignore-source-errors,-Xdoclint:none</additionalOptions>
-                                    <taglets>
-                                        <taglet>
-                                            <tagletClass>org.oddjob.doc.taglet.PropertyTaglet</tagletClass>
-                                        </taglet>
-                                        <taglet>
-                                            <tagletClass>org.oddjob.doc.taglet.DescriptionTaglet</tagletClass>
-                                        </taglet>
-                                        <taglet>
-                                            <tagletClass>org.oddjob.doc.taglet.ExampleTaglet</tagletClass>
-                                        </taglet>
-                                        <taglet>
-                                            <tagletClass>org.oddjob.doc.taglet.RequiredTaglet</tagletClass>
-                                        </taglet>
-                                        <taglet>
-                                            <tagletClass>org.oddjob.doc.taglet.XmlResourceTaglet</tagletClass>
-                                        </taglet>
-                                        <taglet>
-                                            <tagletClass>org.oddjob.doc.taglet.PlainTextResourceTaglet</tagletClass>
-                                        </taglet>
-                                    </taglets>
-                                    <tagletArtifacts>
-                                        <tagletArtifact>
-                                            <groupId>uk.co.rgordon</groupId>
-                                            <artifactId>oj-doc</artifactId>
-                                            <version>${project.version}</version>
-                                        </tagletArtifact>
-                                        <tagletArtifact>
-                                            <groupId>uk.co.rgordon</groupId>
-                                            <artifactId>arooa</artifactId>
-                                            <version>${project.version}</version>
-                                        </tagletArtifact>
-                                    </tagletArtifacts>
-                                    <tagletpath>${project.basedir}/src/test/resources</tagletpath>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
     <build>
         <pluginManagement>
@@ -500,6 +425,8 @@
                         <log4j2.configurationFile>log4j2-maven.xml</log4j2.configurationFile>
                         <build.directory>${project.build.directory}</build.directory>
                     </systemPropertyVariables>
+                    <!-- So Mockito doesn't complain -->
+                    <argLine>-XX:+EnableDynamicAgentLoading</argLine>
                 </configuration>
             </plugin>
 
@@ -531,5 +458,80 @@
 
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <quiet/>
+                                    <additionalOptions>--ignore-source-errors,-Xdoclint:none</additionalOptions>
+                                    <taglets>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.PropertyTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.DescriptionTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.ExampleTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.RequiredTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.XmlResourceTaglet</tagletClass>
+                                        </taglet>
+                                        <taglet>
+                                            <tagletClass>org.oddjob.doc.taglet.PlainTextResourceTaglet</tagletClass>
+                                        </taglet>
+                                    </taglets>
+                                    <tagletArtifacts>
+                                        <tagletArtifact>
+                                            <groupId>uk.co.rgordon</groupId>
+                                            <artifactId>oj-doc</artifactId>
+                                            <version>${project.version}</version>
+                                        </tagletArtifact>
+                                        <tagletArtifact>
+                                            <groupId>uk.co.rgordon</groupId>
+                                            <artifactId>arooa</artifactId>
+                                            <version>${project.version}</version>
+                                        </tagletArtifact>
+                                    </tagletArtifacts>
+                                    <tagletpath>${project.basedir}/src/test/resources</tagletpath>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
